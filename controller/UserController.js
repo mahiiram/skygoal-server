@@ -6,6 +6,23 @@ import dotenv from 'dotenv'
 
 const env = dotenv.config()
 
+export async function getuser(req,res){  //getuser by token
+     
+      const {userId} = req.user
+    try {
+        let user = await usermodel.findById({_id:userId}).select('-password')
+        if(!user){
+            return res.status(400).json({
+                message:"User not found"
+            })
+        }
+        res.status(200).json(user)
+    } catch (error) {
+     console.log(error)
+     res.status(500).json({ message: 'Server Error' });
+    }
+}
+
 
 export async function UserRegister(req, res) {
     const { email, password, username, phonenumber } = req.body;
