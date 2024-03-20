@@ -6,7 +6,7 @@ import dotenv from 'dotenv'
 
 const env = dotenv.config()
 
-export async function getuser(req,res){  //getuser by token
+export async function getuser(req,res){  //getuser by Auth token
      
       const {userId} = req.user
     try {
@@ -101,7 +101,7 @@ export async function userLogin(req, res) {
 }
 
 
-export async function updateUser(req, res, next) {
+export async function updateUser(req, res, next) { //update user by Auth token
     const { userId } = req.user;
     const {
         username,
